@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}?v=1.1">
 </head>
 <body>
     <header class="navbar">
@@ -24,11 +24,17 @@
             <span class="logo-text">L.S.F</span>
         </div>
         <nav class="nav-links">
-            <a href="#technology-showcase">Our Technology</a>
-            <a href="#">Testimonials</a>
-            <a href="#news">News</a>
-            <a href="#clients">Clients</a>
-            <a href="#contact-us">Contact</a>
+            {% if user.is_authenticated and user.is_staff %}
+                <a href="{% url 'hrms_dashboard' %}">Dashboard</a>
+                <a href="{% url 'add_employee' %}">Add Employee</a>
+                <a href="{% url 'staff_logout' %}" style="color: #d93838; font-weight: 600;">Logout</a>
+            {% else %}
+                <a href="/#technology-showcase">Our Technology</a>
+                <a href="/#news">News</a>
+                <a href="/#clients">Clients</a>
+                <a href="/#contact-us">Contact</a>
+                <a href="{% url 'staff_login' %}" style="font-weight: 600;">Staff Login</a>
+            {% endif %}
         </nav>
     </header>
     {% block content %}

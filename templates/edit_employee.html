@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="dashboard-container">
+    <div class="form-card">
+        <h2>Edit Employee</h2>
+        <p class="subtitle">Modify the employee's details below and save your changes.</p>
+
+        <form method="POST" action="{% url 'edit_employee' employee.id %}">
+            {% csrf_token %}
+            <div class="form-grid">
+                <!-- First Name -->
+                <div class="form-field-group">
+                    <label class="form-field-label" for="first_name">First Name</label>
+                    <input class="form-field-input" type="text" id="first_name" name="first_name" required value="{{ employee.first_name }}" placeholder="e.g. John">
+                </div>
+
+                <!-- Last Name -->
+                <div class="form-field-group">
+                    <label class="form-field-label" for="last_name">Last Name</label>
+                    <input class="form-field-input" type="text" id="last_name" name="last_name" required value="{{ employee.last_name }}" placeholder="e.g. Doe">
+                </div>
+
+                <!-- Email -->
+                <div class="form-field-group form-span-2">
+                    <label class="form-field-label" for="email">Email Address</label>
+                    <input class="form-field-input" type="email" id="email" name="email" required value="{{ employee.email }}" placeholder="name@company.com">
+                </div>
+
+                <!-- Phone -->
+                <div class="form-field-group">
+                    <label class="form-field-label" for="phone">Phone Number</label>
+                    <input class="form-field-input" type="tel" id="phone" name="phone" required value="{{ employee.phone }}" placeholder="e.g. +91 9999999999">
+                </div>
+
+                <!-- Department -->
+                <div class="form-field-group">
+                    <label class="form-field-label" for="department">Department</label>
+                    <input class="form-field-input" type="text" id="department" name="department" required value="{{ employee.department }}" placeholder="e.g. Agronomy">
+                </div>
+
+                <!-- Designation -->
+                <div class="form-field-group form-span-2">
+                    <label class="form-field-label" for="designation">Designation</label>
+                    <input class="form-field-input" type="text" id="designation" name="designation" required value="{{ employee.designation }}" placeholder="e.g. Drone Operator Lead">
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <a href="{% url 'hrms_dashboard' %}" class="btn-secondary">Cancel</a>
+                <button type="submit" class="btn-primary">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</main>
+{% endblock %}
