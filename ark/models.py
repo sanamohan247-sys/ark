@@ -9,6 +9,7 @@ class Employee(models.Model):
     designation = models.CharField(max_length=100)
     department = models.CharField(max_length=100)
     date_joined = models.DateField(auto_now_add=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

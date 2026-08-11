@@ -26,7 +26,9 @@
         <nav class="nav-links">
             {% if user.is_authenticated and user.is_staff %}
                 <a href="{% url 'hrms_dashboard' %}">Dashboard</a>
-                <a href="{% url 'add_employee' %}">Add Employee</a>
+                {% if user.is_superuser %}
+                    <a href="{% url 'add_employee' %}">Add Employee</a>
+                {% endif %}
                 <a href="{% url 'staff_logout' %}" style="color: #d93838; font-weight: 600;">Logout</a>
             {% else %}
                 <a href="/#technology-showcase">Our Technology</a>
@@ -34,6 +36,7 @@
                 <a href="/#clients">Clients</a>
                 <a href="/#contact-us">Contact</a>
                 <a href="{% url 'staff_login' %}" style="font-weight: 600;">Staff Login</a>
+                <a href="{% url 'hr_login' %}" style="font-weight: 600;">HR Login</a>
             {% endif %}
         </nav>
     </header>

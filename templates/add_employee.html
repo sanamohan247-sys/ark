@@ -44,11 +44,17 @@
                     <label class="form-field-label" for="designation">Designation</label>
                     <input class="form-field-input" type="text" id="designation" name="designation" required placeholder="e.g. Drone Operator Lead">
                 </div>
+
+                <!-- Status Checkbox -->
+                <div class="form-field-group form-span-2" style="display: flex; align-items: center; gap: 0.75rem; margin-top: 0.5rem;">
+                    <input type="checkbox" id="is_active" name="is_active" checked style="width: 20px; height: 20px; accent-color: #1b633e; cursor: pointer;">
+                    <label for="is_active" class="form-field-label" style="margin-bottom: 0; cursor: pointer; font-size: 1rem; font-weight: 500;">Active Status (Employee is currently active)</label>
+                </div>
             </div>
 
             <!-- Form Actions -->
             <div class="form-actions">
-                <a href="{% url 'hrms_dashboard' %}" class="btn-secondary">Cancel</a>
+                <a href="{% url 'hrms_dashboard' %}" class="btn-secondary" style="text-decoration: none;">Cancel</a>
                 <button type="submit" class="btn-primary">Add Employee</button>
             </div>
         </form>

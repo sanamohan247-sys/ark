@@ -862,6 +862,14 @@
         box-shadow: 0 10px 35px rgba(27, 99, 62, 0.02);
         overflow: hidden;
         margin-bottom: 3rem;
+        opacity: 0;
+        transform: translateY(15px);
+        transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .table-container.visible {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .hrms-table {
@@ -915,6 +923,50 @@
         background-color: rgba(27, 99, 62, 0.06);
         color: #1b633e;
         border: 1px solid rgba(27, 99, 62, 0.12);
+    }
+
+    .badge-active {
+        background-color: #e2ede8;
+        color: #1b633e;
+        border: 1px solid rgba(27, 99, 62, 0.3);
+    }
+
+    .badge-inactive {
+        background-color: #fbebeb;
+        color: #d93838;
+        border: 1px solid rgba(217, 56, 56, 0.3);
+    }
+
+    /* Interactive / Toggleable Badges */
+    .badge-toggle-btn {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        display: inline-flex;
+        outline: none;
+    }
+
+    .badge-interactive {
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .badge-toggle-btn:hover .badge-interactive.badge-active {
+        background-color: #d2e4db;
+        border-color: rgba(27, 99, 62, 0.6);
+        transform: scale(1.05);
+        box-shadow: 0 4px 10px rgba(27, 99, 62, 0.08);
+    }
+
+    .badge-toggle-btn:hover .badge-interactive.badge-inactive {
+        background-color: #f7dede;
+        border-color: rgba(217, 56, 56, 0.6);
+        transform: scale(1.05);
+        box-shadow: 0 4px 10px rgba(217, 56, 56, 0.08);
+    }
+
+    .badge-toggle-btn:active .badge-interactive {
+        transform: scale(0.95);
     }
 
     /* Action Links/Buttons in table */
@@ -1036,5 +1088,158 @@
         }
         .table-container {
             overflow-x: auto;
+        }
+    }
+
+    /* --- Active state for toggle button --- */
+    .btn-secondary.active {
+        background-color: #1b633e;
+        color: #ffffff;
+        border-color: #1b633e;
+    }
+
+    /* --- Placeholder Card for Hidden State --- */
+    .placeholder-card {
+        background-color: #ffffff;
+        border-radius: 20px;
+        border: 1px dashed rgba(27, 99, 62, 0.25);
+        padding: 4.5rem 2rem;
+        text-align: center;
+        margin-bottom: 3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: border-color 0.3s ease;
+    }
+
+    .placeholder-card:hover {
+        border-color: rgba(27, 99, 62, 0.45);
+    }
+
+    .placeholder-icon {
+        background-color: rgba(27, 99, 62, 0.04);
+        color: #1b633e;
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.25rem;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .placeholder-card:hover .placeholder-icon {
+        transform: scale(1.08) rotate(6deg);
+    }
+
+    .placeholder-card h4 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #1b633e;
+        margin-bottom: 0.5rem;
+    }
+
+    .placeholder-card p {
+        color: #7b9c8a;
+        max-width: 440px;
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+    }
+
+    /* --- Search & Filter Bar Styling --- */
+    .search-filter-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 1.25rem 1.5rem;
+        background-color: rgba(27, 99, 62, 0.01);
+        border-bottom: 1px solid rgba(27, 99, 62, 0.08);
+    }
+
+    .search-box {
+        position: relative;
+        flex: 1;
+        max-width: 320px;
+    }
+
+    .search-box input {
+        width: 100%;
+        padding: 0.65rem 1rem 0.65rem 2.5rem;
+        border-radius: 50px;
+        border: 1px solid rgba(27, 99, 62, 0.2);
+        color: #1b633e;
+        font-family: inherit;
+        font-size: 0.9rem;
+        outline: none;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        background-color: #ffffff;
+    }
+
+    .search-box input:focus {
+        border-color: #1b633e;
+        box-shadow: 0 0 0 3px rgba(27, 99, 62, 0.08);
+    }
+
+    .search-icon {
+        position: absolute;
+        left: 0.9rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #7b9c8a;
+        pointer-events: none;
+    }
+
+    .filter-box {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .filter-box label {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #1b633e;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .filter-box select {
+        padding: 0.5rem 1.75rem 0.5rem 1rem;
+        border-radius: 50px;
+        border: 1px solid rgba(27, 99, 62, 0.2);
+        color: #1b633e;
+        font-family: inherit;
+        font-size: 0.9rem;
+        outline: none;
+        background-color: #ffffff;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%231b633e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 0.75rem center;
+        background-size: 14px;
+    }
+
+    .filter-box select:focus {
+        border-color: #1b633e;
+        box-shadow: 0 0 0 3px rgba(27, 99, 62, 0.08);
+    }
+
+    @media (max-width: 576px) {
+        .search-filter-bar {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 1rem;
+        }
+        .search-box {
+            max-width: none;
+        }
+        .filter-box {
+            justify-content: space-between;
         }
     }
